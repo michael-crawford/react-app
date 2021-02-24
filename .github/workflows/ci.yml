@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+      SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -55,8 +58,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy to Staging
-        if: github.event_name == 'push'
-        run: npx surge --project ./build --domain mjcconsulting-react-app.surge.sh
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+        run: npx surge --project ./build --domain mjcs-react-app.surge.sh
+      - name: Deploy to Production
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx surge --project ./build --domain mjcp-react-app.surge.sh
+      - Upload Test Coverage to Codecov.io
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx codecov
         env:
-          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+          CODECOV_TOKEN: $$ secrets.CODECOV_TOKEN }}
