@@ -19,12 +19,6 @@
     "format:check": "prettier --check \"**/*.{js,jsx,json,yml,yaml,css,scss,md}\"",
     "format": "prettier --write \"**/*.{js,jsx,json,yml,yaml,css,scss,md}\""
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
-    }
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
