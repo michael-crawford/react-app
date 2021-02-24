@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# React App &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/michael-crawford/react-app/blob/main/LICENSE) ![](https://github.com/michael-crawford/react-app/workflows/CI/badge.svg?branch=develop&event=push)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
