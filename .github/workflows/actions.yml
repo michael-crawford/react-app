@@ -1,0 +1,19 @@
+name: Actions
+on:
+  push:
+    branches: [actions]
+
+jobs:
+  testing-action:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Say Hello
+        id: hello
+        uses: ./.github/actions/hello
+        with:
+          who-to-greet: World
+      - name: Show Hello Time
+        run: |
+          echo 'Time: ${{ steps.hello.outputs.time }}'
